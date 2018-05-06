@@ -1,0 +1,19 @@
+1) Methods
+    -  The getChange() method uses a greedy algorithm to find out whether we have sufficient coins to support an amount.
+
+    - Initialization
+         - When Vending Machine will be created, it's initialized with default cash and item inventory. 
+           current with quantity 5 for each coin and item.
+
+2) Testing Strategy
+   - Three primary test cases to testWithExactPrice(), testWithMorePrice() and testRefund() to cover general usecase.
+   - Negative test cases like testing SoldOutException, NotSufficientChangeException or NotFullPaidException
+
+3) Benefits
+   - The design uses Abstraction to create reusable, small classes which are easier to read and test.
+   - Encapsulating Items and Coins on their respective class makes it easy to add new Coins and Items.
+   - Inventory is general purpose class and can be used elsewhere, It also encapsulates all inventory operations.
+
+4) Assumption
+   - Vending Machine is single-threaded, only one user will operate at a time.
+   - A call to reset() will reset item and balance i.e. make them zero.

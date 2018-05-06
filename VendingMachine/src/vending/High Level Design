@@ -1,0 +1,30 @@
+1) High-level Design
+Includes overview of the problem, not necessary if you are writing this as part of the test because evaluator should 
+be familiar with problem specification. 
+Important if your design document is intended for someone who is not very familiar with the problem domain.
+
+    - Main interface, classes and Exceptions
+          - VendingMachine - an interface which defines public API of VendingMachine
+          - VendingMachineImpl - a general purpose implementation of VendingMachine interface
+          - Inventory - A type-safe inventory for holding objects, which is an ADAPTER or WRAPPER over java.util.Map
+          - Item - type-safe Enum to represent items supported by vending machine.
+          - Coin - type-safe Enum to represent coins, which is acceptable by vending machine.
+          - Bucket - A Holder class for holding two types together.
+          - SoldOutException - thrown when user selects a product which is sold out
+          - NotSufficientChangeException - thrown when Vending machine doesn't have enough change to support the current transaction.
+          - NotFullPaidException - thrown when the user tries to collect an item, without paying the full amount.
+      
+    - Data structures used
+          - Map data structure is used to implement cash and item inventories.
+          - The List is used to returning changes because it can contain duplicates, i.e. multiple coins of the same denomination.
+    
+    - Motivation behind design decisions
+         - Factory design pattern is used to encapsulate creation logic of VendingMachine.
+         - Adapter pattern is used to create Inventory by wrapping java.util.Map
+         - java.lang.Enum is used to represent Item and Coins, because of following benefits
+                - compile time safety against entering an invalid item and invalid coin.
+                - no need to write code for checking if selected item or entered coin is valid.
+                - reusable and well encapsulated.
+         - long is used to represent price and totalSales, which are the amount because we are dealing in cents.
+           Not used BigDecimal to represent money, because the vending machine can only hold limited amount, 
+           due to finite capacity of coin inventory.
